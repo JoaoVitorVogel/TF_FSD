@@ -68,6 +68,7 @@ subtrai:
 
     la  $t4, c          # $t4 recebe o endereço de C(i)
     la  $t5, d          # $t5 recebe o endereço de D(i)
+    la  $t6, mv         # $t6 recebe o endereço de mv
 maior:
     lw  $t1, 0($t4)     # $t1 recebe o valor de C(i)
     lw  $t2, 0($t5)     # $t2 recebe o valor de D(i)
@@ -86,9 +87,59 @@ proximoMaiorD:
 
     blt	$t0, 10, maior  # pula para o "maior" se i < n ($t0 < 10)
 
-    la  $t6, mv         # $t6 recebe o endereço de mv
     sw  $t3, 0($t6)     # guarda $t3 na memoria mv
 
+
+
+    xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+    xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor C
+    xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor D
+    xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+    xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor C
+    xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor D
+    xor	$t6,$t6,$t6	    # zera o $t6 = endereço de st
+
+    la  $t4, c          # $t4 recebe o endereço de C(i)
+    la  $t5, d          # $t5 recebe o endereço de D(i)
+    la  $t6, st         # $t5 recebe o endereço de st
+somaTotal:
+    lw  $t1, 0($t4)     # $t1 recebe o valor de C(i)
+    lw  $t2, 0($t5)     # $t2 recebe o valor de D(i)
+
+    add $t3, $t3, $t1   # $t3 recebe ele mais $t1
+    add $t3, $t3, $t2   # $t3 recebe ele mais $t2
+
+    add	$t0,$t0,1	    # incrementa o (i)
+    add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
+	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
+
+    blt	$t0, 10, somaTotal	# pula para a "somaTotal" se i < n ($t0 < 10)
+
+    sw  $t3, 0($t6)     # guarda $t3 na memoria mv
+
+
+    xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+    xor	$t1,$t1,$t1	    # zera o $t1 = variavel mv
+    xor	$t2,$t2,$t2    	# zera o $t2 = variavel st
+    xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+    xor	$t4,$t4,$t4	    # zera o $t4 = endereço mv
+    xor	$t5,$t5,$t5	    # zera o $t5 = endereço st
+    xor	$t6,$t6,$t6	    # zera o $t6 = endereço sm
+
+    la  $t4, mv         # $t4 recebe o endereço de mv
+    la  $t5, st         # $t5 recebe o endereço de st
+    lw  $t1, 0($t4)     # $t1 recebe o valor de mv
+    lw  $t2, 0($t5)     # $t2 recebe o valor de st
+    la  $t6, sm         # $t5 recebe o endereço de sm
+multiplica:
+
+    add $t3, $t3, $t2   # $t3 recebe ele mais $t2
+    
+    add	$t0,$t0,1	    # incrementa o (i)
+
+    blt	$t0, $t1, multiplica    # pula para o "multiplica" se i < n ($t0 < 10)
+
+    sw  $t3, 0($t6)     # guarda $t3 na memoria sm
 
 end:	j	end
 
