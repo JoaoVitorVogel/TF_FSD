@@ -1,135 +1,126 @@
-4194304  0x01084026  xor $8,$8,$8          9        xor	$t0,$t0,$t0 	# zera o $t0 = (i)
-4194308  0x01294826  xor $9,$9,$9          10       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor A
-4194312  0x014a5026  xor $10,$10,$10       11       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor B
-4194316  0x016b5826  xor $11,$11,$11       12       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
-4194320  0x018c6026  xor $12,$12,$12       13       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor A
-4194324  0x01ad6826  xor $13,$13,$13       14       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor B
-4194328  0x01ce7026  xor $14,$14,$14       15       xor	$t6,$t6,$t6     # zera o $t6 = endereço vetor C
-4194332  0x3c011001  lui $1,4097           17       la  $t4, a          # $t4 recebe o endereço de A(i)
-4194336  0x342c0000  ori $12,$1,0               
-4194340  0x3c011001  lui $1,4097           18       la  $t5, b          # $t5 recebe o endereço de B(i)
-4194344  0x342d0028  ori $13,$1,40              
-4194348  0x3c011001  lui $1,4097           19       la  $t6, c          # $t6 recebe o endereço de C(i)
-4194352  0x342e0050  ori $14,$1,80              
-4194356  0x8d890000  lw $9,0($12)          21       lw  $t1, 0($t4)     # $t1 recebe o valor de A(i)
-4194360  0x8daa0000  lw $10,0($13)         22       lw  $t2, 0($t5)     # $t2 recebe o valor de B(i)
-4194364  0x012a5820  add $11,$9,$10        24       add $t3, $t1, $t2   # $t3 recebe ($t1 + $t2)
-4194368  0xadcb0000  sw $11,0($14)         25       sw  $t3, 0($t6)     # guarda $t3 na memoria C(i)
-4194372  0x21080001  addi $8,$8,1          27       add	$t0,$t0,1	    # incrementa o (i)
-4194376  0x218c0004  addi $12,$12,4        28       add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
-4194380  0x21ad0004  addi $13,$13,4        29   	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
-4194384  0x21ce0004  addi $14,$14,4        30       add	$t6,$t6,4	    # incrementa o endereço de D (+4 porque é uma word)
-4194388  0x2901000a  slti $1,$8,10         32       blt	$t0, 10, soma	# pula para a "soma" se i < n ($t0 < 10)
-4194392  0x1420fff6  bne $1,$0,-10              
-4194396  0x01084026  xor $8,$8,$8          35       xor	$t0,$t0,$t0 	# zera o $t0 = (i)
-4194400  0x01294826  xor $9,$9,$9          36       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor A
-4194404  0x014a5026  xor $10,$10,$10       37       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor B
-4194408  0x016b5826  xor $11,$11,$11       38       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
-4194412  0x018c6026  xor $12,$12,$12       39       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor A
-4194416  0x01ad6826  xor $13,$13,$13       40       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor B
-4194420  0x01ce7026  xor $14,$14,$14       41       xor	$t6,$t6,$t6     # zera o $t6 = endereço vetor D
-4194424  0x3c011001  lui $1,4097           43       la  $t4, a          # $t4 recebe o endereço de A(i)
-4194428  0x342c0000  ori $12,$1,0               
-4194432  0x3c011001  lui $1,4097           44       la  $t5, b          # $t5 recebe o endereço de B(i)
-4194436  0x342d0028  ori $13,$1,40              
-4194440  0x3c011001  lui $1,4097           45       la  $t6, d          # $t6 recebe o endereço de D(i)
-4194444  0x342e0078  ori $14,$1,120             
-4194448  0x8d890000  lw $9,0($12)          47       lw  $t1, 0($t4)     # $t1 recebe o valor de A(i)
-4194452  0x8daa0000  lw $10,0($13)         48       lw  $t2, 0($t5)     # $t2 recebe o valor de B(i)
-4194456  0x012a5822  sub $11,$9,$10        50       sub $t3, $t1, $t2   # $t3 recebe ($t1 - $t2)
-4194460  0xadcb0000  sw $11,0($14)         51       sw  $t3, 0($t6)     # guarda $t3 na memoria D(i)
-4194464  0x21080001  addi $8,$8,1          53       add	$t0,$t0,1	    # incrementa o (i)
-4194468  0x218c0004  addi $12,$12,4        54       add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
-4194472  0x21ad0004  addi $13,$13,4        55   	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
-4194476  0x21ce0004  addi $14,$14,4        56       add	$t6,$t6,4	    # incrementa o endereço de D (+4 porque é uma word)
-4194480  0x2901000a  slti $1,$8,10         58       blt	$t0, 10, subtrai # pula para o "subtrai" se i < n ($t0 < 10)
-4194484  0x1420fff6  bne $1,$0,-10              
-4194488  0x01084026  xor $8,$8,$8          61       xor	$t0,$t0,$t0 	# zera o $t0 = (i)
-4194492  0x01294826  xor $9,$9,$9          62       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor C
-4194496  0x014a5026  xor $10,$10,$10       63       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor D
-4194500  0x016b5826  xor $11,$11,$11       64       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
-4194504  0x018c6026  xor $12,$12,$12       65       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor C
-4194508  0x01ad6826  xor $13,$13,$13       66       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor D
-4194512  0x01ce7026  xor $14,$14,$14       67       xor	$t6,$t6,$t6	    # zera o $t6 = endereço de mv
-4194516  0x3c011001  lui $1,4097           69       la  $t4, c          # $t4 recebe o endereço de C(i)
-4194520  0x342c0050  ori $12,$1,80              
-4194524  0x3c011001  lui $1,4097           70       la  $t5, d          # $t5 recebe o endereço de D(i)
-4194528  0x342d0078  ori $13,$1,120             
-4194532  0x3c011001  lui $1,4097           71       la  $t6, mv         # $t6 recebe o endereço de mv
-4194536  0x342e00a0  ori $14,$1,160             
-4194540  0x8d890000  lw $9,0($12)          73       lw  $t1, 0($t4)     # $t1 recebe o valor de C(i)
-4194544  0x8daa0000  lw $10,0($13)         74       lw  $t2, 0($t5)     # $t2 recebe o valor de D(i)
-4194548  0x012b082a  slt $1,$9,$11         76       blt	$t1, $t3, proximoMaiorC # pula para o "proximoMaiorC" se $t1 < $t3 (c < mv)
-4194552  0x14200001  bne $1,$0,1                
-4194556  0x212b0000  addi $11,$9,0         77       add $t3, $t1, 0
-4194560  0x014b082a  slt $1,$10,$11        80       blt	$t2, $t3, proximoMaiorD # pula para o "proximoMaiorD" se $t2 < $t3 (d < mv)
-4194564  0x14200001  bne $1,$0,1                
-4194568  0x212b0000  addi $11,$9,0         81       add $t3, $t1, 0
-4194572  0x21080001  addi $8,$8,1          84       add	$t0,$t0,1	    # incrementa o (i)
-4194576  0x218c0004  addi $12,$12,4        85       add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
-4194580  0x21ad0004  addi $13,$13,4        86   	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
-4194584  0x2901000a  slti $1,$8,10         88       blt	$t0, 10, maior  # pula para o "maior" se i < n ($t0 < 10)
-4194588  0x1420fff3  bne $1,$0,-13              
-4194592  0xadcb0000  sw $11,0($14)         90       sw  $t3, 0($t6)     # guarda $t3 na memoria mv
-4194596  0x01084026  xor $8,$8,$8          94       xor	$t0,$t0,$t0 	# zera o $t0 = (i)
-4194600  0x01294826  xor $9,$9,$9          95       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor C
-4194604  0x014a5026  xor $10,$10,$10       96       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor D
-4194608  0x016b5826  xor $11,$11,$11       97       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
-4194612  0x018c6026  xor $12,$12,$12       98       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor C
-4194616  0x01ad6826  xor $13,$13,$13       99       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor D
-4194620  0x01ce7026  xor $14,$14,$14       100      xor	$t6,$t6,$t6	    # zera o $t6 = endereço de st
-4194624  0x3c011001  lui $1,4097           102      la  $t4, c          # $t4 recebe o endereço de C(i)
-4194628  0x342c0050  ori $12,$1,80              
-4194632  0x3c011001  lui $1,4097           103      la  $t5, d          # $t5 recebe o endereço de D(i)
-4194636  0x342d0078  ori $13,$1,120             
-4194640  0x3c011001  lui $1,4097           104      la  $t6, st         # $t5 recebe o endereço de st
-4194644  0x342e00a4  ori $14,$1,164             
-4194648  0x8d890000  lw $9,0($12)          106      lw  $t1, 0($t4)     # $t1 recebe o valor de C(i)
-4194652  0x8daa0000  lw $10,0($13)         107      lw  $t2, 0($t5)     # $t2 recebe o valor de D(i)
-4194656  0x01695820  add $11,$11,$9        109      add $t3, $t3, $t1   # $t3 recebe ele mais $t1
-4194660  0x016a5820  add $11,$11,$10       110      add $t3, $t3, $t2   # $t3 recebe ele mais $t2
-4194664  0x21080001  addi $8,$8,1          112      add	$t0,$t0,1	    # incrementa o (i)
-4194668  0x218c0004  addi $12,$12,4        113      add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
-4194672  0x21ad0004  addi $13,$13,4        114  	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
-4194676  0x2901000a  slti $1,$8,10         116      blt	$t0, 10, somaTotal	# pula para a "somaTotal" se i < n ($t0 < 10)
-4194680  0x1420fff7  bne $1,$0,-9               
-4194684  0xadcb0000  sw $11,0($14)         118      sw  $t3, 0($t6)     # guarda $t3 na memoria mv
-4194688  0x01084026  xor $8,$8,$8          121      xor	$t0,$t0,$t0 	# zera o $t0 = (i)
-4194692  0x01294826  xor $9,$9,$9          122      xor	$t1,$t1,$t1	    # zera o $t1 = variavel mv
-4194696  0x014a5026  xor $10,$10,$10       123      xor	$t2,$t2,$t2    	# zera o $t2 = variavel st
-4194700  0x016b5826  xor $11,$11,$11       124      xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
-4194704  0x018c6026  xor $12,$12,$12       125      xor	$t4,$t4,$t4	    # zera o $t4 = endereço mv
-4194708  0x01ad6826  xor $13,$13,$13       126      xor	$t5,$t5,$t5	    # zera o $t5 = endereço st
-4194712  0x01ce7026  xor $14,$14,$14       127      xor	$t6,$t6,$t6	    # zera o $t6 = endereço sm
-4194716  0x3c011001  lui $1,4097           129      la  $t4, mv         # $t4 recebe o endereço de mv
-4194720  0x342c00a0  ori $12,$1,160             
-4194724  0x3c011001  lui $1,4097           130      la  $t5, st         # $t5 recebe o endereço de st
-4194728  0x342d00a4  ori $13,$1,164             
-4194732  0x8d890000  lw $9,0($12)          131      lw  $t1, 0($t4)     # $t1 recebe o valor de mv
-4194736  0x8daa0000  lw $10,0($13)         132      lw  $t2, 0($t5)     # $t2 recebe o valor de st
-4194740  0x3c011001  lui $1,4097           133      la  $t6, sm         # $t5 recebe o endereço de sm
-4194744  0x342e00a8  ori $14,$1,168             
-4194748  0x016a5820  add $11,$11,$10       136      add $t3, $t3, $t2   # $t3 recebe ele mais $t2
-4194752  0x21080001  addi $8,$8,1          138      add	$t0,$t0,1	    # incrementa o (i)
-4194756  0x0109082a  slt $1,$8,$9          140      blt	$t0, $t1, multiplica    # pula para o "multiplica" se i < n ($t0 < 10)
-4194760  0x1420fffc  bne $1,$0,-4               
-4194764  0xadcb0000  sw $11,0($14)         142      sw  $t3, 0($t6)     # guarda $t3 na memoria sm
-4194768  0x08100074  j 4194768             144  end:	j	end
+0x00400000  0x01084026  xor $8,$8,$8          9        xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+0x00400004  0x01294826  xor $9,$9,$9          10       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor A
+0x00400008  0x014a5026  xor $10,$10,$10       11       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor B
+0x0040000c  0x016b5826  xor $11,$11,$11       12       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+0x00400010  0x018c6026  xor $12,$12,$12       13       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor A
+0x00400014  0x01ad6826  xor $13,$13,$13       14       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor B
+0x00400018  0x01ce7026  xor $14,$14,$14       15       xor	$t6,$t6,$t6     # zera o $t6 = endereço vetor C
+0x0040001c  0x3c011001  lui $1,0x00001001     17       la  $t4, a          # $t4 recebe o endereço de A(i)
+0x00400020  0x342c0000  ori $12,$1,0x00000000      
+0x00400024  0x3c011001  lui $1,0x00001001     18       la  $t5, b          # $t5 recebe o endereço de B(i)
+0x00400028  0x342d0028  ori $13,$1,0x00000028      
+0x0040002c  0x3c011001  lui $1,0x00001001     19       la  $t6, c          # $t6 recebe o endereço de C(i)
+0x00400030  0x342e0050  ori $14,$1,0x00000050      
+0x00400034  0x8d890000  lw $9,0x00000000($12) 21       lw  $t1, 0($t4)     # $t1 recebe o valor de A(i)
+0x00400038  0x8daa0000  lw $10,0x00000000($13)22       lw  $t2, 0($t5)     # $t2 recebe o valor de B(i)
+0x0040003c  0x012a5820  add $11,$9,$10        24       add $t3, $t1, $t2   # $t3 recebe ($t1 + $t2)
+0x00400040  0xadcb0000  sw $11,0x00000000($14)25       sw  $t3, 0($t6)     # guarda $t3 na memoria C(i)
+0x00400044  0x21080001  addi $8,$8,0x00000001 27       add	$t0,$t0,1	    # incrementa o (i)
+0x00400048  0x218c0004  addi $12,$12,0x000000028       add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
+0x0040004c  0x21ad0004  addi $13,$13,0x000000029   	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
+0x00400050  0x21ce0004  addi $14,$14,0x000000030       add	$t6,$t6,4	    # incrementa o endereço de D (+4 porque é uma word)
+0x00400054  0x2901000a  slti $1,$8,0x0000000a 32       blt	$t0, 10, soma	# pula para a "soma" se i < n ($t0 < 10)
+0x00400058  0x1420fff6  bne $1,$0,0xfffffff6       
+0x0040005c  0x01084026  xor $8,$8,$8          35       xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+0x00400060  0x01294826  xor $9,$9,$9          36       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor A
+0x00400064  0x014a5026  xor $10,$10,$10       37       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor B
+0x00400068  0x016b5826  xor $11,$11,$11       38       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+0x0040006c  0x018c6026  xor $12,$12,$12       39       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor A
+0x00400070  0x01ad6826  xor $13,$13,$13       40       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor B
+0x00400074  0x01ce7026  xor $14,$14,$14       41       xor	$t6,$t6,$t6     # zera o $t6 = endereço vetor D
+0x00400078  0x3c011001  lui $1,0x00001001     43       la  $t4, a          # $t4 recebe o endereço de A(i)
+0x0040007c  0x342c0000  ori $12,$1,0x00000000      
+0x00400080  0x3c011001  lui $1,0x00001001     44       la  $t5, b          # $t5 recebe o endereço de B(i)
+0x00400084  0x342d0028  ori $13,$1,0x00000028      
+0x00400088  0x3c011001  lui $1,0x00001001     45       la  $t6, d          # $t6 recebe o endereço de D(i)
+0x0040008c  0x342e0078  ori $14,$1,0x00000078      
+0x00400090  0x8d890000  lw $9,0x00000000($12) 47       lw  $t1, 0($t4)     # $t1 recebe o valor de A(i)
+0x00400094  0x8daa0000  lw $10,0x00000000($13)48       lw  $t2, 0($t5)     # $t2 recebe o valor de B(i)
+0x00400098  0x012a5822  sub $11,$9,$10        50       sub $t3, $t1, $t2   # $t3 recebe ($t1 - $t2)
+0x0040009c  0xadcb0000  sw $11,0x00000000($14)51       sw  $t3, 0($t6)     # guarda $t3 na memoria D(i)
+0x004000a0  0x21080001  addi $8,$8,0x00000001 53       add	$t0,$t0,1	    # incrementa o (i)
+0x004000a4  0x218c0004  addi $12,$12,0x000000054       add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
+0x004000a8  0x21ad0004  addi $13,$13,0x000000055   	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
+0x004000ac  0x21ce0004  addi $14,$14,0x000000056       add	$t6,$t6,4	    # incrementa o endereço de D (+4 porque é uma word)
+0x004000b0  0x2901000a  slti $1,$8,0x0000000a 58       blt	$t0, 10, subtrai # pula para o "subtrai" se i < n ($t0 < 10)
+0x004000b4  0x1420fff6  bne $1,$0,0xfffffff6       
+0x004000b8  0x01084026  xor $8,$8,$8          61       xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+0x004000bc  0x01294826  xor $9,$9,$9          62       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor C
+0x004000c0  0x014a5026  xor $10,$10,$10       63       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor D
+0x004000c4  0x016b5826  xor $11,$11,$11       64       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+0x004000c8  0x018c6026  xor $12,$12,$12       65       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor C
+0x004000cc  0x01ad6826  xor $13,$13,$13       66       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor D
+0x004000d0  0x01ce7026  xor $14,$14,$14       67       xor	$t6,$t6,$t6	    # zera o $t6 = endereço de mv
+0x004000d4  0x3c011001  lui $1,0x00001001     69       la  $t4, c          # $t4 recebe o endereço de C(i)
+0x004000d8  0x342c0050  ori $12,$1,0x00000050      
+0x004000dc  0x3c011001  lui $1,0x00001001     70       la  $t5, d          # $t5 recebe o endereço de D(i)
+0x004000e0  0x342d0078  ori $13,$1,0x00000078      
+0x004000e4  0x3c011001  lui $1,0x00001001     71       la  $t6, mv         # $t6 recebe o endereço de mv
+0x004000e8  0x342e00a0  ori $14,$1,0x000000a0      
+0x004000ec  0x8d890000  lw $9,0x00000000($12) 73       lw  $t1, 0($t4)     # $t1 recebe o valor de C(i)
+0x004000f0  0x8daa0000  lw $10,0x00000000($13)74       lw  $t2, 0($t5)     # $t2 recebe o valor de D(i)
+0x004000f4  0x012b082a  slt $1,$9,$11         76       blt	$t1, $t3, proximoMaiorC # pula para o "proximoMaiorC" se $t1 < $t3 (c < mv)
+0x004000f8  0x14200001  bne $1,$0,0x00000001       
+0x004000fc  0x212b0000  addi $11,$9,0x0000000077       add $t3, $t1, 0
+0x00400100  0x014b082a  slt $1,$10,$11        80       blt	$t2, $t3, proximoMaiorD # pula para o "proximoMaiorD" se $t2 < $t3 (d < mv)
+0x00400104  0x14200001  bne $1,$0,0x00000001       
+0x00400108  0x212b0000  addi $11,$9,0x0000000081       add $t3, $t1, 0
+0x0040010c  0x21080001  addi $8,$8,0x00000001 84       add	$t0,$t0,1	    # incrementa o (i)
+0x00400110  0x218c0004  addi $12,$12,0x000000085       add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
+0x00400114  0x21ad0004  addi $13,$13,0x000000086   	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
+0x00400118  0x2901000a  slti $1,$8,0x0000000a 88       blt	$t0, 10, maior  # pula para o "maior" se i < n ($t0 < 10)
+0x0040011c  0x1420fff3  bne $1,$0,0xfffffff3       
+0x00400120  0xadcb0000  sw $11,0x00000000($14)90       sw  $t3, 0($t6)     # guarda $t3 na memoria mv
+0x00400124  0x01084026  xor $8,$8,$8          94       xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+0x00400128  0x01294826  xor $9,$9,$9          95       xor	$t1,$t1,$t1	    # zera o $t1 = variavel vetor C
+0x0040012c  0x014a5026  xor $10,$10,$10       96       xor	$t2,$t2,$t2    	# zera o $t2 = variavel vetor D
+0x00400130  0x016b5826  xor $11,$11,$11       97       xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+0x00400134  0x018c6026  xor $12,$12,$12       98       xor	$t4,$t4,$t4	    # zera o $t4 = endereço vetor C
+0x00400138  0x01ad6826  xor $13,$13,$13       99       xor	$t5,$t5,$t5	    # zera o $t5 = endereço vetor D
+0x0040013c  0x01ce7026  xor $14,$14,$14       100      xor	$t6,$t6,$t6	    # zera o $t6 = endereço de st
+0x00400140  0x3c011001  lui $1,0x00001001     102      la  $t4, c          # $t4 recebe o endereço de C(i)
+0x00400144  0x342c0050  ori $12,$1,0x00000050      
+0x00400148  0x3c011001  lui $1,0x00001001     103      la  $t5, d          # $t5 recebe o endereço de D(i)
+0x0040014c  0x342d0078  ori $13,$1,0x00000078      
+0x00400150  0x3c011001  lui $1,0x00001001     104      la  $t6, st         # $t5 recebe o endereço de st
+0x00400154  0x342e00a4  ori $14,$1,0x000000a4      
+0x00400158  0x8d890000  lw $9,0x00000000($12) 106      lw  $t1, 0($t4)     # $t1 recebe o valor de C(i)
+0x0040015c  0x8daa0000  lw $10,0x00000000($13)107      lw  $t2, 0($t5)     # $t2 recebe o valor de D(i)
+0x00400160  0x01695820  add $11,$11,$9        109      add $t3, $t3, $t1   # $t3 recebe ele mais $t1
+0x00400164  0x016a5820  add $11,$11,$10       110      add $t3, $t3, $t2   # $t3 recebe ele mais $t2
+0x00400168  0x21080001  addi $8,$8,0x00000001 112      add	$t0,$t0,1	    # incrementa o (i)
+0x0040016c  0x218c0004  addi $12,$12,0x0000000113      add	$t4,$t4,4	    # incrementa o endereço de A (+4 porque é uma word)
+0x00400170  0x21ad0004  addi $13,$13,0x0000000114  	add	$t5,$t5,4	    # incrementa o endereço de B (+4 porque é uma word)
+0x00400174  0x2901000a  slti $1,$8,0x0000000a 116      blt	$t0, 10, somaTotal	# pula para a "somaTotal" se i < n ($t0 < 10)
+0x00400178  0x1420fff7  bne $1,$0,0xfffffff7       
+0x0040017c  0xadcb0000  sw $11,0x00000000($14)118      sw  $t3, 0($t6)     # guarda $t3 na memoria mv
+0x00400180  0x01084026  xor $8,$8,$8          121      xor	$t0,$t0,$t0 	# zera o $t0 = (i)
+0x00400184  0x01294826  xor $9,$9,$9          122      xor	$t1,$t1,$t1	    # zera o $t1 = variavel mv
+0x00400188  0x014a5026  xor $10,$10,$10       123      xor	$t2,$t2,$t2    	# zera o $t2 = variavel st
+0x0040018c  0x016b5826  xor $11,$11,$11       124      xor	$t3,$t3,$t3	    # zera o $t3 = resultado de operação
+0x00400190  0x018c6026  xor $12,$12,$12       125      xor	$t4,$t4,$t4	    # zera o $t4 = endereço mv
+0x00400194  0x01ad6826  xor $13,$13,$13       126      xor	$t5,$t5,$t5	    # zera o $t5 = endereço st
+0x00400198  0x01ce7026  xor $14,$14,$14       127      xor	$t6,$t6,$t6	    # zera o $t6 = endereço sm
+0x0040019c  0x3c011001  lui $1,0x00001001     129      la  $t4, mv         # $t4 recebe o endereço de mv
+0x004001a0  0x342c00a0  ori $12,$1,0x000000a0      
+0x004001a4  0x3c011001  lui $1,0x00001001     130      la  $t5, st         # $t5 recebe o endereço de st
+0x004001a8  0x342d00a4  ori $13,$1,0x000000a4      
+0x004001ac  0x8d890000  lw $9,0x00000000($12) 131      lw  $t1, 0($t4)     # $t1 recebe o valor de mv
+0x004001b0  0x8daa0000  lw $10,0x00000000($13)132      lw  $t2, 0($t5)     # $t2 recebe o valor de st
+0x004001b4  0x3c011001  lui $1,0x00001001     133      la  $t6, sm         # $t5 recebe o endereço de sm
+0x004001b8  0x342e00a8  ori $14,$1,0x000000a8      
+0x004001bc  0x016a5820  add $11,$11,$10       136      add $t3, $t3, $t2   # $t3 recebe ele mais $t2
+0x004001c0  0x21080001  addi $8,$8,0x00000001 138      add	$t0,$t0,1	    # incrementa o (i)
+0x004001c4  0x0109082a  slt $1,$8,$9          140      blt	$t0, $t1, multiplica    # pula para o "multiplica" se i < n ($t0 < 10)
+0x004001c8  0x1420fffc  bne $1,$0,0xfffffffc       
+0x004001cc  0xadcb0000  sw $11,0x00000000($14)142      sw  $t3, 0($t6)     # guarda $t3 na memoria sm
+0x004001d0  0x08100074  j 0x004001d0          144  end:	j	end
 
-
-
-268500992              7          15           9          22           5          -3          -6         -17 
-268501024             -1         -21          16          13           5           9          54          -4 
-268501056             -5          -8          -2         -12          23          28          14          31 
-268501088             59          -7         -11         -25          -3         -33          -9           2 
-268501120              4          13         -49           1          -1          -9           1          -9 
-268501152             59          20        1180           0           0           0           0           0 
-268501184              0           0           0           0           0           0           0           0 
-268501216              0           0           0           0           0           0           0           0 
-268501248              0           0           0           0           0           0           0           0 
-268501280              0           0           0           0           0           0           0           0 
-268501312              0           0           0           0           0           0           0           0 
-268501344              0           0           0           0           0           0           0           0 
-268501376              0           0           0           0           0           0           0           0 
-268501408              0           0           0           0           0           0           0           0 
-268501440              0           0           0           0           0           0           0           0 
+0x10010000    0x00000007 0x0000000f 0x00000009 0x00000016 0x00000005 0xfffffffd 0xfffffffa 0xffffffef 
+0x10010020    0xffffffff 0xffffffeb 0x00000010 0x0000000d 0x00000005 0x00000009 0x00000036 0xfffffffc 
+0x10010040    0xfffffffb 0xfffffff8 0xfffffffe 0xfffffff4 0x00000017 0x0000001c 0x0000000e 0x0000001f 
+0x10010060    0x0000003b 0xfffffff9 0xfffffff5 0xffffffe7 0xfffffffd 0xffffffdf 0xfffffff7 0x00000002 
+0x10010080    0x00000004 0x0000000d 0xffffffcf 0x00000001 0xffffffff 0xfffffff7 0x00000001 0xfffffff7 
+0x100100a0    0x0000003b 0x00000014 0x0000049c 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 
+0x100100c0    0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 
+0x100100e0    0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 0x00000000 
